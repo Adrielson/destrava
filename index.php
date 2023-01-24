@@ -15,6 +15,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@200;300;500;800&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="./css/styles.css">
+  <link rel="stylesheet" href="css/header.css">
+
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -27,7 +29,9 @@
 </head>
 
 <body>
-  <div class="header borda">Header</div>
+<?php
+include_once 'header.php';
+?>
 
   <content>
     <div class="apresentacao borda">Apresentação</div>
@@ -39,5 +43,8 @@
     footer
   </footer>
 </body>
+
+<!-- Importação kit de icones fontawesome -->
+<script src="https://kit.fontawesome.com/84532cf285.js" crossorigin="anonymous"></script>
 
 </html>

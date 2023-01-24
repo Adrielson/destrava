@@ -7,6 +7,10 @@
   --color-purple: #9747FF ;
 }  
 
+.borda {
+  border: 1px solid orange;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -15,11 +19,5 @@
   outline: 0;
   font-weight: 500;
   box-sizing: border-box;
-  font-family: 'Work Sans';
-  background-color: var(--color-grey1);
-  color: var(--color-green);
-}
-
-.borda {
-  border: 1px solid orange;
+  font-family: 'Work Sans', sans-serif;
 }

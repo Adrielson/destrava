@@ -1,0 +1,25 @@
+:root {
+  --color-black: #000000;
+  --color-grey1: #2B2B2B;
+  --color-grey2: #F4F4F4;
+  --color-white: #FFFFFF ;
+  --color-green: #00E88F;
+  --color-purple: #9747FF ;
+}  
+
+* {
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  border: 0;
+  outline: 0;
+  font-weight: 500;
+  box-sizing: border-box;
+  font-family: 'Work Sans';
+  background-color: var(--color-grey1);
+  color: var(--color-green);
+}
+
+.borda {
+  border: 1px solid orange;
+}

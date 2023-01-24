@@ -46,5 +46,19 @@ include_once 'header.php';
 
 <!-- Importação kit de icones fontawesome -->
 <script src="https://kit.fontawesome.com/84532cf285.js" crossorigin="anonymous"></script>
+<script src="js/all.min.js"></script>
+<script src="js/jquery.js"></script>
+
+<script>
+  $('.btn-entrar').click(function () {
+    window.location = 'entrar-cadastrar.php'
+  })
+</script>
+
+<script>
+  $('.btn-cadastrar').click(function () {
+    window.location = 'entrar-cadastrar.php'
+  })
+</script>
 
 </html>

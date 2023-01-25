@@ -51,13 +51,13 @@ include_once 'header.php';
 
 <script>
   $('.btn-entrar').click(function () {
-    window.location = 'entrar-cadastrar.php'
+    window.location = 'entrar.php'
   })
 </script>
 
 <script>
   $('.btn-cadastrar').click(function () {
-    window.location = 'entrar-cadastrar.php'
+    window.location = 'cadastrar.php'
   })
 </script>
 

@@ -1,47 +1,63 @@
 :root {
-    --color-black: #000000;
-    --color-grey1: #2B2B2B;
-    --color-grey2: #F4F4F4;
-    --color-white: #FFFFFF ;
-    --color-green: #00E88F;
-    --color-purple: #9747FF ;
-  }  
+  --color-black: #000000;
+  --color-gray1: #2B2B2B;
+  --color-gray2: #F4F4F4;
+  --color-white: #FFFFFF;
+  --color-green: #00E88F;
+  --color-purple: #9747FF;
+}
+
 
 .btn-entrar {
-  display: flex;
-  flex-direction: row;
+  width: 150px;
+  background-color: var(--color-white);
+  border: none;
+  outline: none;
+  height: 35px;
+  width: 150px;
+  border-radius: 49px;
+  text-transform: uppercase;
+  font-weight: 400;
+  margin: 10px 0;
+  cursor: pointer;
+  transition: 0.5s;
   justify-content: center;
   align-items: center;
   gap: 12px;
   padding: 0px 2px;
-  height: 40px;
-  width: 140px;
-  background: var(--color-white);
-  
-
-  /* Background - Primary */
   border: 2px solid var(--color-black);
-  border-radius: 10px;  
+  border-radius: 10px;
   margin: 5px 5px;
-  /* font-family: 'Work Sans', sans-serif; */
-  
+
+}
+
+.btn-entrar:hover {
+  background-color: #00bd74;
+}
+
+.btn-cadastrar:hover {
+  background-color: #00bd74;
 }
 
 .btn-cadastrar {
-  display: flex;
-  flex-direction: row;
+  width: 150px;
+  background-color: var(--color-green);
+  border: none;
+  outline: none;
+  height: 35px;
+  width: 150px;
+  border-radius: 49px;
+  text-transform: uppercase;
+  font-weight: 400;
+  margin: 10px 0;
+  cursor: pointer;
+  transition: 0.5s;
   justify-content: center;
   align-items: center;
   gap: 12px;
   padding: 0px 2px;
-  height: 40px;
-  width: 140px;
-  background: var(--color-green);
-
-  /* Background - Primary */
   border: 2px solid var(--color-black);
-  border-radius: 10px;  
+  border-radius: 10px;
   margin: 5px 5px;
-  /* font-family: 'Work Sans', sans-serif; */
 }
 

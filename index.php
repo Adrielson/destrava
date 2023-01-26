@@ -57,7 +57,7 @@ include_once 'header.php';
 
 <script>
   $('.btn-cadastrar').click(function () {
-    window.location = 'cadastrar.php'
+    window.location = 'entrar.php'
   })
 </script>
 

@@ -29,36 +29,48 @@
 </head>
 
 <body>
-<?php
-include_once 'header.php';
-?>
+  <?php
+  include_once 'header.php';
+  ?>
 
   <content>
-    <div class="apresentacao borda">Apresentação</div>
-    <div class="area-aluno borda">Área do aluno</div>
-    <div class="area-professor borda">Professores</div>
-  </content>
+    <!-- Banner -->
+    <div class="banner">
+      <div class="title">
+        <h2>Destrava!</h2>
+        <img src="img/img (1).svg" class="imagem" alt="" height=200px />
+        <h3>
+          Plataforma com objetivo de criar uma rede professores capacitados a difundir conhecimentos para alunos que
+          precisam de auxilio em matéria específica.
+        </h3>
+      </div>
+      <form class="form-inline">
+        <input class="form-control mr-sm-2" type="search" placeholder="O que deseja aprender?" aria-label="Buscar">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisar</button>
+      </form>
+    </div>
 
-  <footer class="borda">
-    footer
-  </footer>
+    </main>
+
+
+    <footer class="rodape">
+      <div class="socialicons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-google"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fas fa-envelope"></i></a>
+      </div>
+
+      <p class="copyright">
+        Copyright Destrava 2023 - Todos os direitos reservados.
+      </p>
+    </footer>
 </body>
 
 <!-- Importação kit de icones fontawesome -->
 <script src="https://kit.fontawesome.com/84532cf285.js" crossorigin="anonymous"></script>
 <script src="js/all.min.js"></script>
 <script src="js/jquery.js"></script>
-
-<script>
-  $('.btn-entrar').click(function () {
-    window.location = 'entrar.php'
-  })
-</script>
-
-<script>
-  $('.btn-cadastrar').click(function () {
-    window.location = 'entrar.php'
-  })
-</script>
 
 </html>

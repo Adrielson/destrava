@@ -29,7 +29,7 @@
                     <button class="btn">
                         Entrar <i class="fa-solid fa-arrow-right-to-bracket"></i>
                     </button>
-                    <a class="nav-link active" aria-current="page" href="#home">voltar para página inicial</a>
+                    <a class="nav-link active" aria-current="page" href="index.php">voltar para página inicial</a>
                     <!-- <input type="submit" value="Entrar" class="btn solid" /> -->
                     <!-- <p class="social-text">Or Sign in with social platforms</p>
             <div class="social-media">
@@ -62,10 +62,17 @@
                         <i class="fas fa-lock"></i>
                         <input type="senha" placeholder="Senha" />
                     </div>
+                    <div class="inline-form" for="inline-form">Você é aluno ou professor?
+                        <select class="custom-select">
+                            <option class="inline-option-escolher" value="aluno">escolher</option> <!-- adicionar erro -->
+                            <option class="inline-option" value="aluno">aluno</option>
+                            <option class="inline-option" value="professor">professor</option>
+                        </select>
+                    </div>
                     <button class="btn">
                         Cadastre-se <i class="fa-solid fa-user-plus"></i>
                     </button>
-                    <a class="nav-link active" aria-current="page" href="#home">voltar para página inicial</a>
+                    <a class="nav-link active" aria-current="page" href="index.php">voltar para página inicial</a>
                     <!-- <input type="submit" class="btn" value="Cadastrar" /> -->
                     <!-- <p class="social-text">Or Sign up with social platforms</p>
             <div class="social-media">

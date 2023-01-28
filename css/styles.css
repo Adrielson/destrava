@@ -2,10 +2,11 @@
   --color-black: #000000;
   --color-gray1: #2B2B2B;
   --color-gray2: #F4F4F4;
-  --color-white: #FFFFFF ;
+  --color-gray3: #444444;
+  --color-white: #FFFFFF;
   --color-green: #00E88F;
-  --color-purple: #9747FF ;
-}  
+  --color-purple: #9747FF;
+}
 
 .borda {
   border: 1px solid orange;
@@ -20,4 +21,108 @@
   font-weight: 500;
   box-sizing: border-box;
   font-family: 'Work Sans', sans-serif;
+}
+
+.titulo-buscar {
+  color: var(--color-green);
+  font-weight: bold;
+  font-size: x-large;
+  font-family: 'Work Sans', sans-serif;
+
+}
+
+.form-control.mr-sm-2 {
+  width: 300px;
+}
+
+/* banner */
+.banner {
+  width: 100%;
+  float: left;
+  padding: 3% 4%;
+  text-align: center;
+  background: linear-gradient(to right, #00E88F, #00E88F);
+  /*background: url(../imagens/bg.png) no-repeat fixed;*/
+}
+
+.title h2 {
+  color: #fff;
+  font-size: 2.5em;
+  font-weight: 700;
+}
+
+.title h3 {
+  color: #fff;
+  font-size: 1.5em;
+}
+
+.title {
+  width: 100%;
+}
+
+#quem-somos {
+  width: 100%;
+  background: linear-gradient(to right, #ffffff, #ffffff);
+}
+
+#quem-somos h2 {
+  color: #00E88F;
+}
+
+.artigo-quem-somos {
+  display: table;
+  width: 100%;
+  text-align: justify;
+  border: 7px;
+  margin-bottom: 3%;
+  background-color: rgb(138, 138, 138);
+  border-radius: 7px;
+}
+
+.artigo-quem-somos img {
+  float: right;
+  width: 30%;
+}
+
+
+/* Rodape */
+.rodape {
+  width: 100%;
+  float: left;
+  padding: 3% 4%;
+  text-align: center;
+  background-color: #130400;
+}
+
+.socialicons a {
+  font-size: 1.5em;
+  margin-right: 3%;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.socialicons a:hover {
+  color: #fff;
+}
+
+.socialicons a:last-child {
+  margin-right: 0;
+}
+
+.copyright {
+  margin-top: 2%;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.btn.btn-outline-success {
+  background-color: #ffffff;
+  color: #2B2B2B;
+  border-color: #2B2B2B;
+}
+
+@media (min-width:992px) {
+  .edit-cover .btn {
+    position: absolute;
+    right: 32px;
+    bottom: 32px
+  }
 }

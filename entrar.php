@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 
 //puxando a conexao do arquivo conexao.php
 require 'conexao.php';
@@ -16,7 +17,7 @@ if (isset($_POST['cadastrar'])) {
         window.location.href='entrar.php';
         </script>";
         exit();
-     } else if ($tipo == "aluno") {
+    } else if ($tipo == "aluno") {
         $query = "INSERT INTO alunos (nome, email, senha) VALUES ('$nome', '$email', '$senha')";
         $result = mysqli_query($conn, $query);
 
@@ -29,7 +30,7 @@ if (isset($_POST['cadastrar'])) {
             window.location.href='entrar.php';
             </script>";
         }
-     } else if ($tipo == "professor") {
+    } else if ($tipo == "professor") {
         $query = "INSERT INTO professores (nome, email, senha) VALUES ('$nome', '$email', '$senha')";
         $result = mysqli_query($conn, $query);
 
@@ -48,6 +49,7 @@ if (isset($_POST['cadastrar'])) {
 
 
 if (isset($_POST['submit'])) {
+
     // Recebe os dados do formulário
     $email = $_POST['email'];
     $senha = $_POST['senha'];
@@ -58,24 +60,34 @@ if (isset($_POST['submit'])) {
 
     // Verifica se encontrou algum resultado na tabela "professores"
     if (mysqli_num_rows($result) > 0) {
-      header("Location: area-professor.php");
-      exit();
+        while ($row = mysqli_fetch_assoc($result)) {
+            $_SESSION['idUsuario'] = $row['id'];
+            $_SESSION['tipo'] = 'professor';
+            $_SESSION['nome'] = $row['nome'];
+            header("Location: area-professor.php");
+        }
+        //   exit();
     } else {
-      // Consulta a tabela "alunos"
-      $sql = "SELECT * FROM alunos WHERE email='$email' AND senha='$senha'";
-      $result = mysqli_query($conn, $sql);
+        // Consulta a tabela "alunos"
+        $sql = "SELECT * FROM alunos WHERE email='$email' AND senha='$senha'";
+        $result = mysqli_query($conn, $sql);
 
-      // Verifica se encontrou algum resultado na tabela "alunos"
-      if (mysqli_num_rows($result) > 0) {
-        header("Location: area-aluno.php");
-        exit();
-      } else {
-        echo "<script> alert('Dados incorretos ou usuario inexistente');
+        // Verifica se encontrou algum resultado na tabela "alunos"
+        if (mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                $_SESSION['idUsuario'] = $row['id'];
+                $_SESSION['tipo'] = 'aluno';
+                $_SESSION['nome'] = $row['nome'];
+                header("Location: area-aluno.php");
+            }
+            // exit();
+        } else {
+            echo "<script> alert('Dados incorretos ou usuario inexistente');
         window.location.href='entrar.php';
         </script>";
-      }
+        }
     }
-  }
+}
 
 
 

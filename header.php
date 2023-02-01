@@ -9,6 +9,7 @@
       </button>
       <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <?php include_once 'verificaLogin.php'; ?>
           <!-- <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="#home">Home</a>
           </li> -->

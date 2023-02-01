@@ -23,6 +23,17 @@ BEGIN
 END$$
 DELIMITER ;
 
+-- gatilho para adicionar id à tabela pacotes :
+
+DELIMITER $$
+CREATE TRIGGER trg_pacotes_before_insert_id
+BEFORE INSERT ON pacotes
+FOR EACH ROW
+BEGIN
+  SET NEW.id = COALESCE((SELECT MAX(id) + 1 FROM pacotes), 1);
+END$$
+DELIMITER ;
+
 
 
 -- gatilho para validar email da tabela a professores :

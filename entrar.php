@@ -1,22 +1,22 @@
 <?php
 
 
+//puxando a conexao do arquivo conexao.php
+require 'conexao.php';
+
 if (isset($_POST['cadastrar'])) {
     $nome = $_POST['nome'];
     $email = $_POST['email'];
     $senha = $_POST['senha'];
     $tipo = $_POST['tipo'];
 
-    // Criando conexão com o banco de dados
-    $conn = mysqli_connect('localhost', 'root', '', 'destrava');
 
-    // Verificando se houve erro de conexão
-    if (!$conn) {
-        die("Conexão falhou: " . mysqli_connect_error());
-    }
     if (empty($tipo)) {
-        echo "Você precisa escolher uma opção!";
-    } else if ($tipo == "aluno") {
+        echo "<script> alert('Voce precisa escolher uma opção!');
+        window.location.href='entrar.php';
+        </script>";
+        exit();
+     } else if ($tipo == "aluno") {
         $query = "INSERT INTO alunos (nome, email, senha) VALUES ('$nome', '$email', '$senha')";
         $result = mysqli_query($conn, $query);
 
@@ -29,7 +29,7 @@ if (isset($_POST['cadastrar'])) {
             window.location.href='entrar.php';
             </script>";
         }
-    } else if ($tipo == "professor") {
+     } else if ($tipo == "professor") {
         $query = "INSERT INTO professores (nome, email, senha) VALUES ('$nome', '$email', '$senha')";
         $result = mysqli_query($conn, $query);
 
@@ -45,6 +45,41 @@ if (isset($_POST['cadastrar'])) {
     }
     mysqli_close($conn);
 }
+
+
+if (isset($_POST['submit'])) {
+    // Recebe os dados do formulário
+    $email = $_POST['email'];
+    $senha = $_POST['senha'];
+
+    // Consulta a tabela "professores"
+    $sql = "SELECT * FROM professores WHERE email='$email' AND senha='$senha'";
+    $result = mysqli_query($conn, $sql);
+
+    // Verifica se encontrou algum resultado na tabela "professores"
+    if (mysqli_num_rows($result) > 0) {
+      header("Location: area-professor.php");
+      exit();
+    } else {
+      // Consulta a tabela "alunos"
+      $sql = "SELECT * FROM alunos WHERE email='$email' AND senha='$senha'";
+      $result = mysqli_query($conn, $sql);
+
+      // Verifica se encontrou algum resultado na tabela "alunos"
+      if (mysqli_num_rows($result) > 0) {
+        header("Location: area-aluno.php");
+        exit();
+      } else {
+        echo "<script> alert('Dados incorretos ou usuario inexistente');
+        window.location.href='entrar.php';
+        </script>";
+      }
+    }
+  }
+
+
+
+
 
 ?>
 
@@ -65,23 +100,24 @@ if (isset($_POST['cadastrar'])) {
     <div class="container">
         <div class="formularios-container">
             <div class="entrar-cadastrar">
-                <form action="#" class="entrar-form">
+                <form action="" method="post" class="entrar-form">
                     <h2 class="title">Entrar</h2>
                     <p class="descricao">Entre com seus dados</p>
                     <div class="input-field">
                         <i class="fas fa-user"></i>
-                        <input type="email" placeholder="Email" />
+                        <input type="email" name="email" placeholder="Email" />
                     </div>
                     <div class="input-field">
                         <i class="fas fa-lock"></i>
-                        <input type="senha" placeholder="Senha" />
+                        <input type="senha" name="senha" placeholder="Senha" />
                     </div>
-                    <button class="btn">
+                    <button class="btn" name="submit">
                         Entrar <i class="fa-solid fa-arrow-right-to-bracket"></i>
                     </button>
                     <a class="nav-link active" aria-current="page" href="index.php">voltar para página inicial</a>
 
                 </form>
+
                 <form action="" method="post" class="cadastrar-form"> <!-- action e o method -->
                     <h2 class="title">Junte-se a nós</h2>
                     <p class="descricao">Faça seu cadastro</p>

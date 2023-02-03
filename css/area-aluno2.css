@@ -57,7 +57,11 @@
     font-size: small;
 }
 
-.btn-solicitar {
+.btn-solicitar,
+.btn-nova-foto,
+.btn-editar,
+.btn-salvar,
+.btn-voltar {
     width: 150px;
     background-color: var(--color-green);
     border: none;

@@ -64,7 +64,7 @@ $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
         integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/header.css">
-    <link rel="stylesheet" href="css/area-professor2.css">
+    <link rel="stylesheet" href="css/area-professor.css">
     <!-- Importação kit de icones fontawesome -->
     <script src="https://kit.fontawesome.com/84532cf285.js" crossorigin="anonymous"></script>
     <script src="js/all.min.js"></script>
@@ -85,7 +85,9 @@ $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
                     <div class="profile-info-brief p-3"><img class="img-fluid user-profile-avatar"
                             src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="">
                         <div class="text-center">
-                            <h5 class="text-uppercase mb-4"><?php echo $rows[0]["nome"];?></h5>
+                            <h5 class="text-uppercase mb-4">
+                                <?php echo $rows[0]["nome"]; ?>
+                            </h5>
                             <p class="text-muted fz-base">Graduando em Bacharelado em Ciência da Computação pelo
                                 Instituto de Engenharia e Geociências da Universidade Federal do Oeste do Pará (UFOPA),
                                 em Santarém, PA, Brasil (2017-2022). Bolsista do Programa de Educação Tutorial (PET) do
@@ -107,7 +109,7 @@ $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
                                         <td>
                                             <p class="text-muted mb-0"><a href="/cdn-cgi/l/email-protection"
                                                     class="__cf_email__"
-                                                    data-cfemail="e59784918d80888096a58288848c89cb868a88"><?php echo $rows[0]["email"];?></a>
+                                                    data-cfemail="e59784918d80888096a58288848c89cb868a88"><?php echo $rows[0]["email"]; ?></a>
                                             </p>
                                         </td>
                                     </tr>
@@ -156,6 +158,10 @@ $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
                         </div>
 
                         <hr class="m-0">
+                        <button class="btn-editar">
+                            Editar perfil
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </button>
                     </div>
 
                 </div>
@@ -209,6 +215,12 @@ $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
         <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
         <script type="text/javascript">
 
+        </script>
+
+        <script>
+            $('.btn-editar').click(function () {
+                window.location = 'editar-professor.php'
+            })
         </script>
     </body>
 

@@ -86,7 +86,7 @@ session_start();
                             <table class="table">
                                 <tbody>
                                     <tr>
-                                        <td><strong>Título:</strong></td>
+                                        <td><strong>Escolaridade:</strong></td>
                                         <td>
                                             <p class="text-muted mb-0">Fundamental</p>
                                         </td>
@@ -102,6 +102,10 @@ session_start();
                         </div>
 
                         <hr class="m-0">
+                        <button class="btn-editar">
+                            Editar perfil
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </button>
                     </div>
 
                 </div>
@@ -149,6 +153,12 @@ session_start();
         <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
         <script type="text/javascript">
 
+        </script>
+
+        <script>
+            $('.btn-editar').click(function () {
+                window.location = 'editar-aluno.php'
+            })
         </script>
     </body>
 

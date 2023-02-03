@@ -78,26 +78,20 @@
                                     </div> -->
                                 </div>
 
-                                <div class="mb-3">
+                                <!-- <div class="mb-3">
                                     <label class="small mb-1" for="inputUsername">Biografia</label>
                                     <input class="form-control" id="inputUsername" type="text"
                                         placeholder="Fale subre sua formação, habilidades e competências">
-                                </div>
+                                </div> -->
 
                                 <div class="row gx-3 mb-3">
 
                                     <div class="col-md-6">
-                                        <label class="small mb-1" for="inputOrgName">Título (Técnico, Graduado, Mestre,
-                                            Doutor)</label>
+                                        <label class="small mb-1" for="inputOrgName">Escolaridade</label>
                                         <input class="form-control" id="inputOrgName" type="text"
-                                            placeholder="Digite seu grau de formação">
+                                            placeholder="Digite seu nível de Escolaridade">
                                     </div>
 
-                                    <div class="col-md-6">
-                                        <label class="small mb-1" for="inputLocation">Curso</label>
-                                        <input class="form-control" id="inputLocation" type="text"
-                                            placeholder="Informe sua formação">
-                                    </div>
                                 </div>
 
                                 <!-- <div class="mb-3">
@@ -149,7 +143,7 @@
 
         <script>
             $('.btn-voltar').click(function () {
-                window.location = 'area-professor.php'
+                window.location = 'area-aluno.php'
             })
         </script>
     </body>

@@ -39,7 +39,7 @@ session_start();
 
     <body>
         <?php
-        include_once 'header.php';
+        include_once 'header-logado.php';
         ?>
 
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
@@ -116,15 +116,20 @@ session_start();
                                 <p class="descricao-busca">Consulte livremente as aulas disponíveis
                                     e entre em contato com o professor ideal de acordo com os seus critérios
                                     (tarifa, diplomas, avaliações, aulas online ou presenciais).</p>
-                                <form class="form-inline">
+                                <form class="form-inline" action="lista-pacotes-busca.php" method="get">
                                     <input class="form-control mr-sm-2" type="search"
-                                        placeholder="O que deseja aprender?" aria-label="Buscar">
+                                        placeholder="O que deseja aprender?" aria-label="Buscar" name="query">
                                     <button class="btn btn-outline-success my-2 my-sm-0"
                                         type="submit">Pesquisar</button>
                                 </form>
-
                             </div>
 
+                            <div class="resultados-busca">
+                                <h6 class="form-buscar">Aulas disponíveis</h6>
+                                <?php
+                                include_once 'lista-pacotes-busca.php';
+                                ?>
+                            </div>
 
                         </div>
 
@@ -132,8 +137,8 @@ session_start();
                             <div class="card mb-3">
                                 <h5 class="titulos-area-aluno ">Aulas solicitadas</h5>
                                 <?php
-                                include_once 'lista-pacotes.php';
-                                ?>                           
+                                include_once 'lista-pacotes-solicitados.php';
+                                ?>
                             </div>
                         </div>
                     </div>

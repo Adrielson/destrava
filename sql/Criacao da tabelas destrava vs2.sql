@@ -62,7 +62,7 @@ status VARCHAR(8),
 pacote INTEGER,
 data DATE,
 PRIMARY KEY(idPedido),
-FOREIGN KEY(aluno) REFERENCES usuariosaluno(id),
+FOREIGN KEY(aluno) REFERENCES usuarios(id),
 FOREIGN KEY(pacote) REFERENCES pacotes(idPacote)
 );
 

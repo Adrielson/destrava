@@ -22,11 +22,20 @@ VALUES ('$titulo', '$descricao', '$valor', '" . $_SESSION['idUsuario'] . "')";
         echo "<script> alert('Pacote cadastrado com sucesso!');
             </script>";
         if (mysqli_query($conn, $sql)) {
-            header("Location: area-professor.php"); 
+            header("Location: area-professor.php");
         }
-        
+
     }
 }
+
+
+// exibir as informações de contato do usuario na pagina professor
+$id_usuario = $_SESSION['idUsuario'];
+$sql = "SELECT * FROM pacotes pac
+                                JOIN usuarios pro ON pac.professor = pro.id WHERE pac.professor ='$id_usuario'";
+
+$result = mysqli_query($conn, $sql);
+$rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
 ?>
 
@@ -55,7 +64,7 @@ VALUES ('$titulo', '$descricao', '$valor', '" . $_SESSION['idUsuario'] . "')";
         integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/header.css">
-    <link rel="stylesheet" href="css/area-professor.css">
+    <link rel="stylesheet" href="css/area-professor2.css">
     <!-- Importação kit de icones fontawesome -->
     <script src="https://kit.fontawesome.com/84532cf285.js" crossorigin="anonymous"></script>
     <script src="js/all.min.js"></script>
@@ -66,7 +75,7 @@ VALUES ('$titulo', '$descricao', '$valor', '" . $_SESSION['idUsuario'] . "')";
 
     <body>
         <?php
-        include_once 'header.php';
+        include_once 'header-logado.php';
         ?>
 
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
@@ -76,7 +85,7 @@ VALUES ('$titulo', '$descricao', '$valor', '" . $_SESSION['idUsuario'] . "')";
                     <div class="profile-info-brief p-3"><img class="img-fluid user-profile-avatar"
                             src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="">
                         <div class="text-center">
-                            <h5 class="text-uppercase mb-4">Adrielson</h5>
+                            <h5 class="text-uppercase mb-4"><?php echo $rows[0]["nome"];?></h5>
                             <p class="text-muted fz-base">Graduando em Bacharelado em Ciência da Computação pelo
                                 Instituto de Engenharia e Geociências da Universidade Federal do Oeste do Pará (UFOPA),
                                 em Santarém, PA, Brasil (2017-2022). Bolsista do Programa de Educação Tutorial (PET) do
@@ -98,7 +107,7 @@ VALUES ('$titulo', '$descricao', '$valor', '" . $_SESSION['idUsuario'] . "')";
                                         <td>
                                             <p class="text-muted mb-0"><a href="/cdn-cgi/l/email-protection"
                                                     class="__cf_email__"
-                                                    data-cfemail="e59784918d80888096a58288848c89cb868a88">[email&#160;protected]</a>
+                                                    data-cfemail="e59784918d80888096a58288848c89cb868a88"><?php echo $rows[0]["email"];?></a>
                                             </p>
                                         </td>
                                     </tr>
@@ -188,7 +197,7 @@ VALUES ('$titulo', '$descricao', '$valor', '" . $_SESSION['idUsuario'] . "')";
                             <div class="card mb-3">
                                 <h5 class="titulos-area-anuncios">Meus anúncios</h5>
                                 <?php
-                                include_once 'lista-pacotes.php';
+                                include_once 'lista-pacotes-professor.php';
                                 ?>
                             </div>
                         </div>

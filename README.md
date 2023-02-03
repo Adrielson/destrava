@@ -9,6 +9,8 @@ O destrava visa facilitar o encontro entre professores (empregados ou não) que 
   Além da criação das tabelas há um script para criação de gatilhos, sendo eles:
     - gatilho pra adicionar id a tabela alunos
     - gatilho pra adicionar id a tabela professores
+    - gatilho para adicionar id a tabela pacotes
     - gatilho para validar email da tabela a professores
     - gatilho para validar email da tabela a alunos
+     
 

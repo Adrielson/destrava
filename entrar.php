@@ -18,7 +18,7 @@ if (isset($_POST['cadastrar'])) {
         </script>";
         exit();
     } else if ($tipo == "aluno") {
-        $query = "INSERT INTO alunos (nome, email, senha) VALUES ('$nome', '$email', '$senha')";
+        $query = "INSERT INTO usuarios (nome, email, senha, tipo) VALUES ('$nome', '$email', '$senha','$tipo')";
         $result = mysqli_query($conn, $query);
 
         if ($result) {
@@ -31,7 +31,7 @@ if (isset($_POST['cadastrar'])) {
             </script>";
         }
     } else if ($tipo == "professor") {
-        $query = "INSERT INTO professores (nome, email, senha) VALUES ('$nome', '$email', '$senha')";
+        $query = "INSERT INTO usuarios (nome, email, senha, tipo) VALUES ('$nome', '$email', '$senha','$tipo')";
         $result = mysqli_query($conn, $query);
 
         if ($result) {
@@ -47,7 +47,7 @@ if (isset($_POST['cadastrar'])) {
     mysqli_close($conn);
 }
 
-
+// form do login
 if (isset($_POST['submit'])) {
 
     // Recebe os dados do formulário
@@ -55,7 +55,7 @@ if (isset($_POST['submit'])) {
     $senha = $_POST['senha'];
 
     // Consulta a tabela "professores"
-    $sql = "SELECT * FROM professores WHERE email='$email' AND senha='$senha'";
+    $sql = "SELECT * FROM usuarios WHERE email='$email' AND senha='$senha' AND tipo='professor'";
     $result = mysqli_query($conn, $sql);
 
     // Verifica se encontrou algum resultado na tabela "professores"
@@ -67,9 +67,9 @@ if (isset($_POST['submit'])) {
             header("Location: area-professor.php");
         }
         //   exit();
-    } else {
+     } else {
         // Consulta a tabela "alunos"
-        $sql = "SELECT * FROM alunos WHERE email='$email' AND senha='$senha'";
+        $sql = "SELECT * FROM usuarios WHERE email='$email' AND senha='$senha' AND tipo='aluno'";
         $result = mysqli_query($conn, $sql);
 
         // Verifica se encontrou algum resultado na tabela "alunos"

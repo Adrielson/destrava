@@ -12,13 +12,13 @@
           <?php include_once 'verificaLogin.php'; ?>
           <!-- <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="#home">Home</a>
-          </li> -->
+          </li> 
           <li class="nav-item">
             <a class="nav-link active" href="area-professor.php">Professor</a>
           </li>
           <li class="nav-item">
             <a class="nav-link active" href="area-aluno.php">Aluno</a>
-          </li>
+          </li>-->
           <li class="nav-item">
             <button class="btn-entrar">
               Entrar <i class="fa-solid fa-arrow-right-to-bracket"></i>

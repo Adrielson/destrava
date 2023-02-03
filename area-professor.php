@@ -1,11 +1,11 @@
 <?php
 
-session_start();
-
 //puxando a conexao do arquivo conexao.php
 require 'conexao.php';
 
 
+
+session_start();
 
   // Receber dados do formulário
   if (isset($_POST['criar'])) {
@@ -14,18 +14,15 @@ require 'conexao.php';
   $valor = $_POST['valor'];
 
   // Preparar a consulta SQL
-  $sql = "INSERT INTO pacotes (produto, descricao, preco) VALUES ('$titulo', '$descricao', '$valor')";
+  $sql = "INSERT INTO pacotes (produto, descricao, preco, professor)
+VALUES ('$titulo', '$descricao', '$valor', '".$_SESSION['idUsuario']."')";
 
   // Executar a consulta e verificar se foi bem-sucedida
   if (mysqli_query($conn, $sql)) {
-    echo "Dados inseridos com sucesso.";
+    echo "<script> alert('Pacote cadastrado com sucesso!');
+            </script>";
   }
-
-}
-
-$sql = "select produto,descricao,preco from pacotes where id = 0"; //coloquei id zero so para testar se iria aparecer o pacote
-  $result = mysqli_query($conn, $sql);
-  $pacote = mysqli_fetch_assoc($result);
+  }
 
 ?>
 
@@ -185,7 +182,10 @@ $sql = "select produto,descricao,preco from pacotes where id = 0"; //coloquei id
                             <div class="card mb-3">
                             <h5 class="titulos-area-anuncios">Meus anúncios</h5>
                             <?php
-                                $sql = "SELECT * FROM pacotes";
+                              $id_usuario = $_SESSION['idUsuario'];
+                                $sql = "SELECT * FROM pacotes pac
+                                JOIN usuarios pro ON pac.professor = pro.id WHERE pac.professor ='$id_usuario'";
+
                                 $result = mysqli_query($conn, $sql);
                                 if (mysqli_num_rows($result) > 0) {
                                                                     $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
@@ -195,7 +195,7 @@ $sql = "select produto,descricao,preco from pacotes where id = 0"; //coloquei id
                                                                                                 <a href="#" class="sp-author-avatar">
                                                                                                     <img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="">
                                                                                                 </a>
-                                                                                                <p>Adrielson</p>
+                                                                                                <p><?php echo $row["nome"]; ?></p>
                                                                                                 </div>
                                                                                                 <div class="sp-content">
                                                                                                 <div class="titulo-anuncio"><?php echo $row["produto"]; ?></div>
@@ -216,7 +216,7 @@ $sql = "select produto,descricao,preco from pacotes where id = 0"; //coloquei id
                                                 <p>- - -</p>
                                                 </div>
                                                 <div class="sp-content">
-                                                <div class="titulo-anuncio">SEM PRODUTO CADASTRADO</div>
+                                                <div class="titulo-anuncio">Você não possui anúncios cadastrados</div>
                                                 <p class="sp-paragraph mb-0">- - -</p>
                                                 <div class="valor-anunc">R$ - - -</div>
                                                 </div>

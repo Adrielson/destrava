@@ -1,3 +1,11 @@
+<?php
+
+//puxando a conexao do arquivo conexao.php
+require 'conexao.php';
+
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,7 +27,7 @@
         integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/header.css">
-    <link rel="stylesheet" href="css/area-aluno.css">
+    <link rel="stylesheet" href="css/area-aluno2.css">
 
     <!-- Importação kit de icones fontawesome -->
     <script src="https://kit.fontawesome.com/84532cf285.js" crossorigin="anonymous"></script>
@@ -123,37 +131,9 @@
                         <div class="minhas-aulas">
                             <div class="card mb-3">
                                 <h5 class="titulos-area-aluno ">Aulas solicitadas</h5>
-                                <div class="aula">
-                                    <div class="sp-author">
-                                        <a href="#" class="sp-author-avatar"><img
-                                                src="https://bootdey.com/img/Content/avatar/avatar6.png" alt=""></a>
-                                        <p>Renan Maia</p>
-                                    </div>
-                                    <div class="sp-content">
-                                        <h6 class="titulo-anuncio">Lógica de Programação</h6>
-                                        <p class="sp-paragraph mb-0">Nesta aula vou te ensinar lógica de programação
-                                            e
-                                            farei uma introdução a linguagem de programação Python</p>
-                                        <div class="valor-anunc">R$ 50,00</div>
-                                    </div>
-
-                                </div>
-
-                                <div class="aula">
-                                    <div class="sp-author">
-                                        <a href="#" class="sp-author-avatar"><img
-                                                src="https://bootdey.com/img/Content/avatar/avatar6.png" alt=""></a>
-                                        <p>Renan Maia</p>
-                                    </div>
-                                    <div class="sp-content">
-                                        <div class="titulo-anuncio">Banco de dados</div>
-                                        <p class="sp-paragraph mb-0">Nesta aula vai aprender sobre SQL usaremos o
-                                            PostgreSQL</p>
-                                        <div class="valor-anunc">R$ 50,00</div>
-                                    </div>
-
-                                </div>
-
+                                <?php
+                                include_once 'lista-pacotes.php';
+                                ?>                           
                             </div>
                         </div>
                     </div>

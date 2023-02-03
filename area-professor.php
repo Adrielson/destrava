@@ -7,22 +7,26 @@ require 'conexao.php';
 
 session_start();
 
-  // Receber dados do formulário
-  if (isset($_POST['criar'])) {
-  $titulo = $_POST['titulo'];
-  $descricao = $_POST['descricao'];
-  $valor = $_POST['valor'];
+// Receber dados do formulário
+if (isset($_POST['criar'])) {
+    $titulo = $_POST['titulo'];
+    $descricao = $_POST['descricao'];
+    $valor = $_POST['valor'];
 
-  // Preparar a consulta SQL
-  $sql = "INSERT INTO pacotes (produto, descricao, preco, professor)
-VALUES ('$titulo', '$descricao', '$valor', '".$_SESSION['idUsuario']."')";
+    // Preparar a consulta SQL
+    $sql = "INSERT INTO pacotes (produto, descricao, preco, professor)
+VALUES ('$titulo', '$descricao', '$valor', '" . $_SESSION['idUsuario'] . "')";
 
-  // Executar a consulta e verificar se foi bem-sucedida
-  if (mysqli_query($conn, $sql)) {
-    echo "<script> alert('Pacote cadastrado com sucesso!');
+    // Executar a consulta e verificar se foi bem-sucedida
+    if (mysqli_query($conn, $sql)) {
+        echo "<script> alert('Pacote cadastrado com sucesso!');
             </script>";
-  }
-  }
+        if (mysqli_query($conn, $sql)) {
+            header("Location: area-professor.php"); 
+        }
+        
+    }
+}
 
 ?>
 
@@ -149,81 +153,42 @@ VALUES ('$titulo', '$descricao', '$valor', '".$_SESSION['idUsuario']."')";
 
                 <div class="profile-section-main">
                     <div class="tab-content profile-tabs-content">
-                     <form action="" method="post">
-                        <div class="card mb-3">
-                            <h5 class="titulos-area-anuncios">Criar anúncio</h5>
-                            <div class="post-editor">
-                                <h6 class="form-cria-anuncio">Título da aula</h6>
-                                <label class="label-input" for="">
-                                    <input type="titulo" name="titulo" placeholder="Título">
-                                </label>
-                                <h6 class="form-cria-anuncio">Descrição</h6>
-                                <textarea name="descricao" id="post-field" class="post-field"
-                                    placeholder="O que seu aluno irá aprender?"></textarea>
-                                <h6 class="form-cria-anuncio">Valor</h6>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">R$</span>
+                        <form action="" method="post">
+                            <div class="card mb-3">
+                                <h5 class="titulos-area-anuncios">Criar anúncio</h5>
+                                <div class="post-editor">
+                                    <h6 class="form-cria-anuncio">Título da aula</h6>
+                                    <label class="label-input" for="">
+                                        <input type="titulo" name="titulo" placeholder="Título">
+                                    </label>
+                                    <h6 class="form-cria-anuncio">Descrição</h6>
+                                    <textarea name="descricao" id="post-field" class="post-field"
+                                        placeholder="O que seu aluno irá aprender?"></textarea>
+                                    <h6 class="form-cria-anuncio">Valor</h6>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">R$</span>
+                                        </div>
+                                        <input type="text" class="form-control" name="valor"
+                                            aria-label="Amount (to the nearest dollar)">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">.00</span>
+                                        </div>
                                     </div>
-                                    <input type="text" class="form-control" name="valor" aria-label="Amount (to the nearest dollar)">
-                                    <div class="input-group-append">
-                                        <span class="input-group-text">.00</span>
+                                    <div class="d-flex">
+                                        <button class="btn btn-success px-4 py-1" type="submit" name="criar">Criar
+                                            anúncio</button>
                                     </div>
-                                </div>
-                                <div class="d-flex">
-                                    <button class="btn btn-success px-4 py-1" type="submit" name="criar">Criar anúncio</button>
-                                </div>
 
+                                </div>
                             </div>
-                        </div>
-                     </form>
+                        </form>
 
                         <div class="meus-anuncios">
                             <div class="card mb-3">
-                            <h5 class="titulos-area-anuncios">Meus anúncios</h5>
-                            <?php
-                              $id_usuario = $_SESSION['idUsuario'];
-                                $sql = "SELECT * FROM pacotes pac
-                                JOIN usuarios pro ON pac.professor = pro.id WHERE pac.professor ='$id_usuario'";
-
-                                $result = mysqli_query($conn, $sql);
-                                if (mysqli_num_rows($result) > 0) {
-                                                                    $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
-                                                                foreach ($rows as $row) { ?>
-                                                                                            <div class="aula">
-                                                                                                <div class="sp-author">
-                                                                                                <a href="#" class="sp-author-avatar">
-                                                                                                    <img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="">
-                                                                                                </a>
-                                                                                                <p><?php echo $row["nome"]; ?></p>
-                                                                                                </div>
-                                                                                                <div class="sp-content">
-                                                                                                <div class="titulo-anuncio"><?php echo $row["produto"]; ?></div>
-                                                                                                <p class="sp-paragraph mb-0"><?php echo $row["descricao"]; ?></p>
-                                                                                                <div class="valor-anunc">R$ <?php echo $row["preco"]; ?></div>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                            <?php
-                                                                                        }
-                                                            } else {
-                                        ?>
-                                        <div>
-                                        <div class="aula">
-                                                <div class="sp-author">
-                                                <a href="#" class="sp-author-avatar">
-                                                    <img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="">
-                                                </a>
-                                                <p>- - -</p>
-                                                </div>
-                                                <div class="sp-content">
-                                                <div class="titulo-anuncio">Você não possui anúncios cadastrados</div>
-                                                <p class="sp-paragraph mb-0">- - -</p>
-                                                <div class="valor-anunc">R$ - - -</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <?php
-                                        }
+                                <h5 class="titulos-area-anuncios">Meus anúncios</h5>
+                                <?php
+                                include_once 'lista-pacotes.php';
                                 ?>
                             </div>
                         </div>
@@ -239,11 +204,3 @@ VALUES ('$titulo', '$descricao', '$valor', '".$_SESSION['idUsuario']."')";
     </body>
 
 </html>
-
-
-
-
-
-
-
-

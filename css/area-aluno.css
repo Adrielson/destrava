@@ -19,6 +19,15 @@
     margin: 12px;
 }
 
+.post-editor,
+.aula {
+    padding: .75rem;
+    background: #f7f7f9;
+    border: 1px solid #eceeef;
+    border-radius: .25rem;
+    margin-bottom: 1.5rem
+}
+
 .titulos-area-aluno {
     color: var(--color-green);
     font-weight: bold;
@@ -48,14 +57,6 @@
     font-size: small;
 }
 
-.post-editor,
-.aula {
-    padding: .75rem;
-    background: #f7f7f9;
-    border: 1px solid #eceeef;
-    border-radius: .25rem;
-    margin-bottom: 1.5rem
-}
 
 .profile-wrapper {
     display: -webkit-box;
@@ -291,7 +292,7 @@ body.menubar-top .profile-wrapper {
 
 .sp-content .titulo-anuncio {
     font-size: 1.5rem;
-    color: var(--color-green);
+    color: var(--color-gray3);
     position: absolute;
     top: -3rem;
     left: 80px

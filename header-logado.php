@@ -9,7 +9,10 @@
       </button>
       <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <?php include_once 'verificaLogin.php'; ?>
+          <h6 class="ola">
+            <?php include_once 'verificaLogin.php'; ?>
+          </h6>
+          
           <!-- <li class="nav-item">
             <a class="nav-link active" href="area-professor.php">Professor</a>
           </li>

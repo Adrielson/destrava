@@ -54,7 +54,7 @@ FOREIGN KEY (professor) REFERENCES professores(id)
 );
 
 CREATE TABLE pedidos (
-idPedido INTEGER,
+idPedido INTEGER AUTO_INCREMENT,
 aluno INTEGER,
 status VARCHAR(8),
 pacote INTEGER,

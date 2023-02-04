@@ -3,7 +3,6 @@ id INTEGER,
 rua VARCHAR(30),
 cidade VARCHAR(30),
 bairro VARCHAR(30),
-cep VARCHAR(10),
 estado VARCHAR(30),
 PRIMARY KEY(id)
 );
@@ -16,11 +15,12 @@ PRIMARY KEY(id)
 );
 
 CREATE TABLE usuarios (
-  id INTEGER,
+  id INTEGER AUTO_INCREMENT,
   nome VARCHAR(100) NOT NULL,
   email VARCHAR(100) NOT NULL,
   senha VARCHAR(100) NOT NULL,
   tipo ENUM('professor', 'aluno') NOT NULL,
+  telefone VARCHAR(15),
   idEndereco INTEGER,
   PRIMARY KEY(id),
   FOREIGN KEY (idEndereco) REFERENCES enderecos(id)
@@ -46,7 +46,7 @@ CREATE TABLE usuariosaluno (
 
 
 CREATE TABLE pacotes (
-idPacote INTEGER,
+idPacote INTEGER AUTO_INCREMENT,
 produto VARCHAR(60) NOT NULL,
 preco DECIMAL(10, 2),
 descricao LONGTEXT,
@@ -56,7 +56,7 @@ FOREIGN KEY (professor) REFERENCES usuariosprofessor(id)
 );
 
 CREATE TABLE pedidos (
-idPedido INTEGER,
+idPedido INTEGER AUTO_INCREMENT,
 aluno INTEGER,
 status VARCHAR(8),
 pacote INTEGER,

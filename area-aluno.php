@@ -4,7 +4,16 @@
 require 'conexao.php';
 
 session_start();
+
+// exibir as informações de contato do usuario na pagina aluno
+$id_usuario = $_SESSION['idUsuario'];
+$sql = "SELECT * FROM  usuarios  WHERE usuarios.id ='$id_usuario'";
+
+$result = mysqli_query($conn, $sql);
+$rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -49,7 +58,9 @@ session_start();
                     <div class="profile-info-brief p-3"><img class="img-fluid user-profile-avatar"
                             src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="">
                         <div class="text-center">
-                            <h5 class="text-uppercase mb-4">Renan Maia</h5>
+                            <h5 class="text-uppercase mb-4">
+                                <?php echo $rows[0]["nome"]; ?>
+                            </h5>
                         </div>
                     </div>
 
@@ -65,14 +76,16 @@ session_start();
                                         <td>
                                             <p class="text-muted mb-0"><a href="/cdn-cgi/l/email-protection"
                                                     class="__cf_email__"
-                                                    data-cfemail="e59784918d80888096a58288848c89cb868a88">[email&#160;protected]</a>
+                                                    data-cfemail="e59784918d80888096a58288848c89cb868a88"><?php echo $rows[0]["email"]; ?></a>
                                             </p>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td><strong>Telefone:</strong></td>
                                         <td>
-                                            <p class="text-muted mb-0">9399199-9999</p>
+                                            <p class="text-muted mb-0">
+                                                <?php echo $rows[0]["telefone"]; ?>
+                                            </p>
                                         </td>
                                     </tr>
                                     <tr>
@@ -88,13 +101,13 @@ session_start();
                                     <tr>
                                         <td><strong>Escolaridade:</strong></td>
                                         <td>
-                                            <p class="text-muted mb-0">Fundamental</p>
+                                            <p class="text-muted mb-0"> </p>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td><strong>Cidade</strong></td>
                                         <td>
-                                            <p class="text-muted mb-0">Santarém</p>
+                                            <p class="text-muted mb-0"> </p>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -120,13 +133,77 @@ session_start();
                                 <p class="descricao-busca">Consulte livremente as aulas disponíveis
                                     e entre em contato com o professor ideal de acordo com os seus critérios
                                     (tarifa, diplomas, avaliações, aulas online ou presenciais).</p>
-                                <form class="form-inline" action="lista-pacotes-busca.php" method="get">
+                                <!-- <form class="form-inline" action="lista-pacotes-busca.php" method="get">
                                     <input class="form-control mr-sm-2" type="search"
                                         placeholder="O que deseja aprender?" aria-label="Buscar" name="query">
                                     <button class="btn btn-outline-success my-2 my-sm-0"
                                         type="submit">Pesquisar</button>
+                                </form> -->
+                                <form class="form-inline" action="" method="post">
+                                    <input type="search" name="produto">
+                                    <input type="submit" value="Pesquisar">
+                                    <input type="submit" name="limpar" value="Limpar">
                                 </form>
+
+
+
+                                <?php
+                                // include_once 'lista-pacotes-busca.php';
+                                if (isset($_POST['produto'])) {
+                                    $produto = $_POST['produto'];
+
+                                    // if (!$conn) {
+                                    //     die("Não foi possível conectar ao banco de dados: " . mysqli_connect_error());
+                                    // }
+                                
+                                    $sql = "SELECT pacotes.*, usuarios.nome as nome_professor, usuarios.telefone
+                                    FROM pacotes
+                                    JOIN usuarios ON pacotes.professor = usuarios.id
+                                    WHERE produto LIKE '%$produto%'";
+                                    $result = mysqli_query($conn, $sql);
+                                    if (mysqli_num_rows($result) > 0) {
+
+                                        echo "<table>";
+                                        echo "<tr>";
+                                        // echo "<th>ID do Pacote</th>";
+                                        echo "<th>Professor</th>";
+                                        echo "<th> Aula</th>";
+                                        echo "<th> Descrição</th>";
+                                        echo "<th> Contato</th>";                                        
+                                        echo "<th> Preço</th>";
+                                        echo "</tr>";
+                                        while ($row = mysqli_fetch_assoc($result)) {
+                                            // include_once 'lista-pacotes-busca.php';
+                                            echo "<tr>";
+                                            // echo "<td>" . $row['idPacote'] . "</td>";
+                                            echo "<td>" . $row['nome_professor'] . "</td>";
+                                            echo "<td>" . $row['produto'] . "</td>";
+                                            echo "<td>" . $row['descricao'] . "</td>";
+                                            echo "<td>" . $row['telefone'] . "</td>";
+                                            echo "<td>" . $row['preco'] . "</td>";
+                                            echo "</tr>";
+                                        }
+                                        echo "</table>";
+                                    } else if (isset($_POST['limpar'])) {
+                                        echo "Resultados da pesquisa limpados.";
+                                    } else {
+                                        echo "Nenhum pacote encontrado.";
+                                    }
+
+                                    mysqli_close($conn);
+                                }
+                                ?>
+
                             </div>
+
+                            <!-- <div class="minhas-aulas">
+                                <div class="card mb-3">
+                                    <h5 class="titulos-area-aluno ">Aulas solicitadas</h5>
+                                    <?php
+                                    // include_once 'lista-pacotes-solicitados.php';
+                                    ?>
+                                </div>
+                            </div> -->
 
                             <div class="resultados-busca">
                                 <h6 class="form-buscar">Aulas disponíveis</h6>
@@ -134,32 +211,21 @@ session_start();
                                 include_once 'lista-pacotes-busca.php';
                                 ?>
                             </div>
-
-                        </div>
-
-                        <div class="minhas-aulas">
-                            <div class="card mb-3">
-                                <h5 class="titulos-area-aluno ">Aulas solicitadas</h5>
-                                <?php
-                                include_once 'lista-pacotes-solicitados.php';
-                                ?>
-                            </div>
                         </div>
                     </div>
+
                 </div>
-
             </div>
-        </div>
-        <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-        <script type="text/javascript">
+            <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+            <script type="text/javascript">
 
-        </script>
+            </script>
 
-        <script>
-            $('.btn-editar').click(function () {
-                window.location = 'editar-aluno.php'
-            })
-        </script>
+            <script>
+                $('.btn-editar').click(function () {
+                    window.location = 'editar-aluno.php'
+                })
+            </script>
     </body>
 
 </html>

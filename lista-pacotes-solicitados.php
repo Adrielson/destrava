@@ -3,52 +3,23 @@
 //puxando a conexao do arquivo conexao.php
 require 'conexao.php';
 
-$id_usuario = $_SESSION['idUsuario'];
-$sql = "SELECT * FROM pacotes pac
-                                JOIN usuarios pro ON pac.professor = pro.id WHERE pac.professor ='$id_usuario'";
 
-$result = mysqli_query($conn, $sql);
-if (mysqli_num_rows($result) > 0) {
-    $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
-    foreach ($rows as $row) { ?>
-        <div class="aula">
-            <div class="sp-author">
-                <a href="#" class="sp-author-avatar">
-                    <img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="">
-                </a>
-                <p>
-                    <?php echo $row["nome"]; ?>
-                </p>
-            </div>
-            <div class="sp-content">
-                <div class="titulo-anuncio">
-                    <?php echo $row["produto"]; ?>
-                </div>
-                <p class="sp-paragraph mb-0">
-                    <?php echo $row["descricao"]; ?>
-                </p>
-                <div class="valor-anunc">R$
-                    <?php echo $row["preco"]; ?>
-                </div>
-            </div>
-        </div>
-        <?php
+
+if (isset($_POST['solicitar'])) {
+    $id_usuario = $_SESSION['idUsuario'];
+    $id_pacote = $_POST['id_pacote'];
+var_dump($id_pacote);
+    // Preparar a consulta SQL
+    $sql = "INSERT INTO pedidos (aluno, pacote, status)
+    VALUES ('$id_usuario', '$id_pacote','ocupado')";
+
+    // Executar a consulta e verificar se foi bem-sucedida
+    if (mysqli_query($conn, $sql)) {
+      echo "<script> alert('Pedido realizado com sucesso!');
+            </script>";
+      header("Location: area-aluno.php");
     }
-} else {
-    ?>
-    <div>
-        <div class="aula">
-            <div class="sp-content">
-                <div class="titulo-anuncio">Nenhuma aula foi solicitada</div>
-            </div>
-        </div>
-        <?php
-}
-
-
-
-
-
+  }
 
 
 

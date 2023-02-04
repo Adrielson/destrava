@@ -31,16 +31,23 @@ if (mysqli_num_rows($result) > 0) {
                     <?php echo $row["preco"]; ?>
                 </div>
             </div>
-            <hr>
+            <!-- <hr>
             <div class="sp-content">
                 <h4 class="subtitulo-anuncio">Número de solicitações</h4>
+                <?php
+                // $sql2 = "SELECT COUNT(idPedido) as count FROM pedidos WHERE pacote = ".$row['idPacote']." AND status = 'ocupado'";
+                // $result2 = mysqli_query($conn, $sql2);
+                // $row2 = mysqli_fetch_assoc($result2);
+                ?>
                 <div class="valor-anunc">
-                    0 aulas solicitadas
+                    <?php 
+                    // echo $row2['count']; 
+                    ?> aulas solicitadas
                 </div>
                 <button class="btn-solicitar">
                     Liberar <i class="fa-solid fa-plus"></i>
                 </button>
-            </div>
+            </div> -->
         </div>
         <?php
     }

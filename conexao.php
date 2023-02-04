@@ -2,7 +2,7 @@
 $host = "localhost";
 $username = "root";
 $password = "";
-$dbname = "destrava";
+$dbname = "destrava2";
 
 // Cria a conexão com o banco de dados
 $conn = mysqli_connect($host, $username, $password, $dbname);

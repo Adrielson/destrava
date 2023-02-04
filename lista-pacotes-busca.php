@@ -46,10 +46,10 @@ if (mysqli_num_rows($result) > 0) {
                     <?php echo $row["preco"]; ?>
                 </div>
         </div>
-        <div class="sp-content">
+        <!-- <div class="sp-content">
         <input type="submit" name="solicitar" class="btn-solicitar" value="Solicitar">
                     <i class="fa-solid fa-plus"></i>
-            </div>
+            </div> -->
           </form>
         <?php
     }
@@ -101,10 +101,10 @@ if (!isset($_POST['query'])){
                      <?php echo $row["preco"]; ?>
                  </div>
              </div>
-             <div class="sp-content">
+             <!-- <div class="sp-content">
                     <input type="submit" name="solicitar" class="btn-solicitar" value="Solicitar">
                     <i class="fa-solid fa-plus"></i>
-            </div>
+            </div> -->
             </form>
         </div>
          <?php

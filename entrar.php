@@ -15,39 +15,48 @@ if (isset($_POST['cadastrar'])) {
     $tipo = $_POST['tipo'];
 
     $hash = hash('sha256', $senha);
-
+    $emailCheck = "SELECT * FROM usuarios WHERE email = '$email'";
 
     if (empty($tipo)) {
         echo "<script> alert('Voce precisa escolher uma opção!');
         window.location.href='entrar.php';
         </script>";
         exit();
-    } else if ($tipo == "aluno") {
-        $query = "INSERT INTO usuarios (nome, email, senha, tipo) VALUES ('$nome', '$email', '$senha','$tipo')";
-        $result = mysqli_query($conn, $query);
-
-        if ($result) {
+    } else if ($tipo == "aluno" and $email != NULL and $hash != NULL) {
+        $result = mysqli_query($conn, $emailCheck);
+        if (mysqli_num_rows($result) > 0) {
+            echo "<script> alert('Email já existe, tente outro!');
+            window.location.href='entrar.php';
+            </script>";
+        } else {
+            // Insere o usuário na tabela de usuários
+            $query = "INSERT INTO usuarios (nome, email, senha, tipo) 
+            VALUES ('$nome', '$email', '$hash','$tipo')";
+            mysqli_query($conn, $query);
             echo "<script> alert('Aluno cadastrado com sucesso!');
             window.location.href='entrar.php';
             </script>";
-        } else {
-            echo "<script> alert('Não foi possível realizar o cadastro!');
+        }
+
+    } else if ($tipo == "professor" and $email != NULL and $hash != NULL) {
+        $result = mysqli_query($conn, $emailCheck);
+        if (mysqli_num_rows($result) > 0) {
+            echo "<script> alert('Email já existe, tente outro!');
             window.location.href='entrar.php';
             </script>";
-        }
-    } else if ($tipo == "professor") {
-        $query = "INSERT INTO usuarios (nome, email, senha, tipo) VALUES ('$nome', '$email', '$senha','$tipo')";
-        $result = mysqli_query($conn, $query);
-
-        if ($result) {
+        } else {
+            // Insere o usuário na tabela de usuários
+            $query = "INSERT INTO usuarios (nome, email, senha, tipo) 
+            VALUES ('$nome', '$email', '$hash','$tipo')";
+            mysqli_query($conn, $query);
             echo "<script> alert('Professor cadastrado com sucesso!');
             window.location.href='entrar.php';
             </script>";
-        } else {
-            echo "<script> alert('Não foi possível realizar o cadastro!');
-            window.location.href='entrar.php';
-            </script>";
         }
+    } else {
+        echo "<script> alert('Não foi possível realizar o cadastro!');
+        window.location.href='entrar.php';
+        </script>";
     }
     mysqli_close($conn);
 }
@@ -58,9 +67,11 @@ if (isset($_POST['submit'])) {
     // Recebe os dados do formulário
     $email = $_POST['email'];
     $senha = $_POST['senha'];
+    $hash = hash('sha256', $senha);
+
 
     // Consulta a tabela "professores"
-    $sql = "SELECT * FROM usuarios WHERE email='$email' AND senha='$senha' AND tipo='professor'";
+    $sql = "SELECT * FROM usuarios WHERE email='$email' AND senha='$hash' AND tipo='professor'";
     $result = mysqli_query($conn, $sql);
 
     // Verifica se encontrou algum resultado na tabela "professores"
@@ -71,10 +82,9 @@ if (isset($_POST['submit'])) {
             $_SESSION['nome'] = $row['nome'];
             header("Location: area-professor.php");
         }
-        //   exit();
-     } else {
+    } else {
         // Consulta a tabela "alunos"
-        $sql = "SELECT * FROM usuarios WHERE email='$email' AND senha='$senha' AND tipo='aluno'";
+        $sql = "SELECT * FROM usuarios WHERE email='$email' AND senha='$hash' AND tipo='aluno'";
         $result = mysqli_query($conn, $sql);
 
         // Verifica se encontrou algum resultado na tabela "alunos"
@@ -85,7 +95,6 @@ if (isset($_POST['submit'])) {
                 $_SESSION['nome'] = $row['nome'];
                 header("Location: area-aluno.php");
             }
-            // exit();
         } else {
             echo "<script> alert('Dados incorretos ou usuario inexistente');
         window.location.href='entrar.php';
